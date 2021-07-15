@@ -1,0 +1,339 @@
+<html ng-app>
+<head>
+
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+<style>
+  body{
+    background-color: #fff;
+    overflow: hidden;
+  }
+.row{
+  margin: 0px;
+  }
+  .activeMenu  {
+    background: green !important;
+    color: white !important;
+}
+
+.myDiv {
+  border: 2px solid black;
+  text-align: center;
+  height: 70px;
+  color: green;
+  background: #fff;
+}
+.Div0 {
+  border: 2px outset red;
+  
+  text-align: center;
+  /*margin-top:3px;*/
+  width: 100%;
+  height: 136px;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  /*margin: 4px 2px;*/
+  transition-duration: 0.4s;
+  cursor: pointer;
+  /*margin-left: 1px;*/
+  width:263px;
+  
+}
+
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #4CAF50;
+  
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.button2 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.button2:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+.button3 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #f44336;
+}
+
+.button3:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+.button4 {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+}
+
+.button4:hover {
+  background-color: #555555;
+  color: white;
+}
+.button5 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #4CAF50;
+  
+}
+
+.button5:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.index{
+  z-index: 1;
+}
+.Div1 {
+    border: 2px outset black;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    padding-top: 250px;
+}
+.Div2 {
+  border: 2px outset black;
+  
+  text-align: center;
+  /*margin-top:2px;*/
+  width: 100%;
+  height: 50px;
+}
+
+
+</style>
+
+<style> 
+    :root {
+      --line-chart-color: #607D8B;
+      --annotation-context-color: red;
+      --annotation-above-color: red;
+      --annotation-anomaly-color: red;
+    }
+
+     svg {
+        background-color: white;
+        font-family: 'Lato';
+     }
+
+     .axis, .axis text {
+       fill: var(--line-chart-color);
+     }
+
+     .axis line, path {
+      stroke: var(--line-chart-color);
+     }
+
+     path {
+       fill: none;
+     }
+
+    .annotation path {
+      stroke: var(--annotation-context-color);
+    }
+
+    .annotation:not(.above):not(.anomaly) path {
+      stroke-dasharray: 1,3;
+    }
+
+    .annotation text {
+      fill: var(--annotation-context-color);
+    }
+
+    .annotation.above path {
+      stroke: var(--annotation-above-color);
+    }
+
+    .annotation.above text {
+      fill: var(--annotation-above-color);
+    }
+
+    .annotation.anomaly path {
+      stroke: var(--annotation-anomaly-color);
+      stroke-width: 2px;
+    }
+
+    .annotation.anomaly text {
+      fill: var(--annotation-anomaly-color);
+    }
+
+    .annotation-note-bg {
+      fill: rgba(0, 0, 0, 0);
+    }
+
+    .annotation-note-title {
+      font-weight: bold;
+    }
+
+    text.title {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    .chart-area{
+      height: 250px;
+    }
+
+    table {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+}
+
+thead {
+    flex: 0 0 auto;
+}
+
+tbody {
+    flex: 1 1 auto;
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+    </style>
+</head>
+
+</head>
+<body ng-controller="controller">
+
+  <div class="myDiv row index">
+    <div class="col-md-1">
+      <img src="eme symbol.gif" style="width: 60px; height: 65px;float: left;padding:5px 5px 5px 5px;float: right;border: 0px outset black;margin-top:1px;">
+    </div>
+    <div class="col-md-10" style="text-align: center; padding: 12px;">
+      <h2>MILITARY COLLEGE OF ELECTRONICS AND MECHANICAL ENGINEERING</h2>
+    </div>
+
+    <div class="col-md-1">
+      <img src="mceme.gif" style="width: 60px; height: 65px;float: left;padding:5px 5px 5px 5px;float: left;border: 0px outset black;margin-top:1px;">
+    </div>
+  </div>
+  <div class="row index" style="height: 180px; border: 1px solid black;padding: 2px;background: url(background.jpg);background-size: 100% 180px;background-repeat: no-repeat;">
+    <!-- <div class="col-md-2">
+      <img src="eagle.jpg" style="height: 120px;float: left;padding:5px 5px 5px 5px;float: right;border: 1px outset black;margin-top:1px;">
+    </div> -->
+    <div  class="col-md-12" >
+      <div class="row" style="margin:5px; height: 30px; color: #fff; margin-right: 5px;">
+        <marquee direction="left">
+          <h3>HEALTH MONITORING OF MCEME DATA CENTRE</h3></marquee>
+      </div>
+      <div class="row" style="margin:5px; height: 30px; color: #fff; margin-right: 5px;">
+        <marquee direction="right">
+          <h3>KARAM HI DHARAM</h3></marquee>
+      </div>
+    </div>
+   <!--  <div class="col-md-2">
+      <img src="mceme.jpg" style="width: 180px; height: 120px;float: left;padding:5px 5px 5px 5px;float: left;border: 1px outset black;margin-top:1px;">
+    </div> -->
+    <div class="col-md-12 index" style="padding: 2px;">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-2"><button style="width: 100%;" class="btn btn-default" ng-click="appContext.activeMenu = 'TEMPRATURE'" ng-class="getClass('TEMPRATURE')">TEMPRATURE</button></div>
+        <div class="col-md-2"><button style="width: 100%;" class="btn btn-default" ng-click="appContext.activeMenu = 'HUMIDITY'" ng-class="getClass('HUMIDITY')">HUMIDITY</button></div>
+        <div class="col-md-2"><button style="width: 100%;" class="btn btn-default" ng-click="appContext.activeMenu = 'SMOKE'" ng-class="getClass('SMOKE')">SMOKE</button></div>
+        <div class="col-md-2"><button style="width: 100%;" class="btn btn-default" ng-click="appContext.activeMenu = 'LOGS'" ng-class="getClass('LOGS')">LOGS</button></div>
+        <div class="col-md-2"></div>
+      </div>
+      
+    </div>
+    <div class="col-md-12 index" style="text-align: center; height: 30px; padding: 2px;">
+      <div class="row index" >
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <ul class="list-inline">
+          <li class="list-inline-item">
+            <span class="badge badge-info">Unit 1</span>        
+          </li>
+
+          <li class="list-inline-item">
+            <span class="badge badge-info">Unit 2</span>        
+          </li>
+        </ul>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+  </div>
+ <div class="Div1">
+  <div id="chartArea"  ng-show="appContext.activeMenu == 'TEMPRATURE'" style="width: 100%; height: 100%;">
+      <svg width="100%" height="100%">
+      </svg>
+    </div>
+    <div id="humArea" ng-show="appContext.activeMenu == 'HUMIDITY'" style="width: 100%; height: 100%;">
+      <svg width="100%" height="100%">
+      </svg>
+    </div>
+    <div id="smokeArea" ng-show="appContext.activeMenu == 'SMOKE'" style="width: 100%; height: 100%;">
+      <svg width="100%" height="100%">
+      </svg>
+    </div>
+    <div ng-show="appContext.activeMenu == 'LOGS'" style="width: 100%; height: 100%;">
+      <table class="table table-striped table-hover table-sm table-responsive" style="width: 100%; height: 100%;">
+        <thead>
+          <tr>
+            <th scope="col">Unit</th>
+            <th scope="col">Time</th>
+            <th scope="col">Temperature</th>
+            <th scope="col">Humidity</th>
+            <th scope="col">Smoke</th>
+            <th scope="col">Radient</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in appContext.data">
+            <td>{{row.eventid}}</td>
+            <td>{{row.devicetimestamp}}</td>
+            <td>{{row.oti}}</td>
+            <td>{{row.wti}}</td>
+            <td>{{row.oli}}</td>
+            <td>{{row.ati}}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+ </div>
+   <!-- Bootstrap core JavaScript-->
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/1.12.1/d3-annotation.min.js"></script>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="js/app.js"></script>
+
+ </body>
+</html>

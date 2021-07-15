@@ -1,0 +1,18 @@
+!DOCTYPE html
+<html>
+<head>
+	<title>HOME PAGE</title>
+</head>
+<body>
+	<div> style="width:1250px;height:300px
+	<div>
+
+
+		<img src="eagle.jpg" style="width: 180px; height: 125px;float: left;padding:5px 5px 5px 5px;float: right;">
+		<img src="mceme.jpg" style="width: 180px; height: 125px;float: left;padding:5px 5px 5px 5px;float: left;">
+
+	</div>
+	</div>>
+
+</body>
+</html>

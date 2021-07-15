@@ -1,0 +1,273 @@
+<!--
+=========================================================
+* Material Dashboard Dark Edition - v2.1.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/material-dashboard-dark
+* Copyright 2019 Creative Tim (http://www.creative-tim.com)
+
+* Coded by www.creative-tim.com
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en" ng-app>
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Daily Report
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <!-- CSS Files -->
+  <link href="css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <style type="text/css">
+    
+    .card .card-header-primary .card-icon, .card .card-header-primary:not(.card-header-icon):not(.card-header-text), .card .card-header-primary .card-text {
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgb(26, 32, 53);
+}
+
+.dark-edition .card .card-header-primary .card-icon, .dark-edition .card .card-header-primary .card-text, .dark-edition .card .card-header-primary:not(.card-header-icon):not(.card-header-text), .dark-edition .card.bg-primary, .dark-edition .card.card-rotate.bg-primary .front, .dark-edition .card.card-rotate.bg-primary .back {
+    background: linear-gradient(60deg, #c6bdbd94, #bcc1c1)
+}
+
+.dark-edition {
+    background-color: #f1f1f1;
+}
+
+.dark-edition .card {
+    background: #fff;
+}
+
+.card [class*="card-header-"] .card-title a, .card [class*="card-header-"] .card-title, .card [class*="card-header-"] .icon i, .card[class*="bg-"] .card-title a, .card[class*="bg-"] .card-title, .card[class*="bg-"] .icon i {
+    color: #00000096;
+}
+
+.table-fixed tbody {
+    height: 500px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+table {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+}
+
+thead {
+    flex: 0 0 auto;
+}
+
+tbody {
+    flex: 1 1 auto;
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+
+.title {
+    text-align: center;
+    padding: 5px;
+}
+  }
+  </style>
+}
+</head>
+
+<body ng-controller="controller" class="dark-edition" >
+  <div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="black" data-image="../assets/img/sidebar-2.jpg">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+      <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+          Datasets
+        </a></div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" target="_self" href="#" ng-click="nucleusStats()">
+              <i class="material-icons"></i>
+              <p>Nucleus Monitoring</p>
+            </a>
+          </li>
+          <li class="nav-item {{cluster == appContext.cluster ? 'active' : ''}}" ng-repeat="cluster in appContext.clusters" >
+            <a class="nav-link" target="_self" href="#" ng-click="updateCluster(cluster)">
+              <i class="material-icons"></i>
+              <p>{{cluster}}</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <button class="btn btn-default" ng-click="getLargeTables()">Large Tables</button>
+          </div>
+          <div class="navbar-wrapper">
+            <button class="btn btn-default" ng-click="initTableInfo()">Table Information</button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+            <div ng-show="appContext.loading" style="text-align: center;"> 
+              Please Wait...
+              <span>
+                <img style="height: 31px;" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/585d0331234507.564a1d239ac5e.gif">
+              </span>
+            </div>
+            <div ng-show="appContext.loading" style="position: absolute;background: #ccc;height: 100%;width: 100%;z-index: 1;opacity: 0.5;"></div>
+
+            <div class="row">
+
+            <div class="col-lg-12 col-md-12" ng-show="appContext.tableInformation">
+              <div class="card">
+                <h4 class="card-title title">Table Information</h4>
+                <div class="card-body table-responsive">
+                  <form>
+                    <div class="form-row align-items-center">
+                      <div class="col-lg-5">
+                        <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Schema" ng-model="appContext.schema">
+                      </div>
+                      <div class="col-lg-5">
+                        <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Table" ng-model="appContext.table">
+                      </div>
+                      <div class="col-lg-2">
+                        <button type="submit" class="btn btn-primary mb-2" ng-click="getTableInfo(appContext.schema, appContext.table)"> Get Keys info </button>
+                      </div>
+                    </div>
+                    <div class="form-row align-items-center">
+                      <div class="col-lg-10">
+                        <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Column List" ng-model="appContext.columnList">
+                      </div>
+                      <div class="col-lg-2">
+                        <button type="submit" class="btn btn-primary mb-2" ng-click="getDataRetention(appContext.schema, appContext.table)"> Get Stats </button>
+                      </div>
+                    </div>
+                  </form>
+                  <form>
+<!--                     <div class="row col-lg-12"> -->
+                    <!-- <div class="row col-lg-12 ">
+                      <div class="col-lg-3"><h5>Dist Key</h5></div>
+                      <div class="col-lg-9"><span ng-repeat="row in appContext.tableInfo.dksk"  class=" btn-outline-success" ng-if="row.distkey == 'true'">{{row.column}}</span></div>
+                    </div>
+
+                    <div class="row col-lg-12 ">
+                      <div class="col-lg-3"><h5>Sort Key</h5></div>
+                      <div class="col-lg-9"><span ng-repeat="row in appContext.tableInfo.dksk"  class=" btn-outline-info" ng-if="row.sortkey != '0'">{{row.column}} &nbsp;</span> </div>
+                    </div>
+                    <div class="row col-lg-12 ">
+                      <div class="col-lg-3"><h5>Primary Key</h5></div>
+                      <div class="col-lg-9"><span ng-repeat="row in appContext.tableInfo.pk"  class=" btn-outline-primary">{{row.column_name}} &nbsp;</span></div>
+                    </div> -->
+
+
+                    <div class="row col-lg-12 ">
+                      <table class="table table-striped table-bordered table-hover">
+                        <tr>
+                          <td>Table: </td> 
+                          <td><span ng-repeat="row in appContext.tableInfo.dksk"  class=" btn-outline-success" ng-if="row.distkey == 'true'">{{appContext.schema}}.{{appContext.table}}</span></td>
+                        </tr>
+                        <tr>
+                          <td>Dist Key: </td> 
+                          <td><span ng-repeat="row in appContext.tableInfo.dksk"  class=" btn-outline-success" ng-if="row.distkey == 'true'">{{row.column}}</span></td>
+                        </tr>
+                        <tr>
+                          <td>Sort Key: </td> 
+                          <td><span ng-repeat="row in appContext.tableInfo.dksk"  class=" btn-outline-info" ng-if="row.sortkey != '0'">{{row.column}} &nbsp;</span></td>
+                        </tr>
+                        <tr>
+                          <td>Primary Key: </td> 
+                          <td><span ng-repeat="row in appContext.tableInfo.pk"  class=" btn-outline-primary">{{row.column_name}} &nbsp;</span></td>
+                        </tr>
+
+                        <tr ng-repeat="row in appContext.columnStatsCols">
+                          <td>{{row}}: </td> 
+                          <td>{{appContext.columnStats[row]}}</td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                  </form>
+                  
+                  </div>
+                </div>
+              </div>
+            </div> 
+            <div class="col-lg-12 col-md-12" ng-show="appContext.largeTables">
+              <div class="card">
+                <h4 class="card-title title">Large Tables</h4>
+                <div class="card-body table-responsive">
+                  <table class="table table-fixed table-striped table-bordered table-hover ">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>Schema </th>
+                        <th>Table</th>
+                        <th>Sortkey1 Enc </th>
+                        <th>Skew Sortkey1 </th>
+                        <th>Size </th>
+                        <th>Vacuum Sort Benefit </th>
+                        <th>Sortkey1 </th>
+                        <th>Sortkey Num </th>
+                        <th>Diststyle </th>
+                        <th>Size In GB </th>
+                        <th>Tbl Rows </th>
+                      </tr>
+                    </thead>
+                    <tr ng-repeat="row in appContext.largeTables">
+                      <td> {{row.schema}} </td>
+                      <td style="cursor: pointer;" ng-click="getTableInfo(row.schema,row.table)"> {{row.table}} </td>
+                      <td> {{row.sortkey1_enc}} </td>
+                      <td> {{row.skew_sortkey1}} </td>
+                      <td> {{row.size}} </td>
+                      <td> {{row.vacuum_sort_benefit}} </td>
+                      <td> {{row.sortkey1}} </td>
+                      <td> {{row.sortkey_num}} </td>
+                      <td> {{row.diststyle}} </td>
+                      <td> {{row.size_in_GB}} </td>
+                      <td> {{row.tbl_rows}} </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div> 
+          </div> 
+        </div>
+      </div>
+      <footer class="footer">
+
+      </footer>
+
+    </div>
+  </div>
+  <!--   Core JS Files   -->
+</body>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="js/app.js"></script>
+</html>

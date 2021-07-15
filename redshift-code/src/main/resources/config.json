@@ -1,0 +1,48 @@
+{
+"clusters":{
+  "bitsstaging2": {
+    "username": "bits_rs_admin",
+    "password": "Bits_rs_admin0902",
+    "port": "8192",
+    "db": "bitsstaging2",
+    "host": "bitsstaging2.cv4j5qglvssj.us-east-1.redshift.amazonaws.com",
+    "start_date": "2020-12-01",
+    "end_date": "2021-03-31",
+    "ids": "19596127,19456283,19186451,19460008,18368122,19456382,19600327,19460000,13914408,18368118,19630200"
+  },
+  "bitsstaging1": {
+    "username": "bits_rs_admin",
+    "password": "Bits_rs_admin0902",
+    "port": "8192",
+    "db": "bitsstaging1",
+    "host": "bitsstaging1.cv4j5qglvssj.us-east-1.redshift.amazonaws.com"
+  },
+  "pandora_na": {
+    "username": "pandora_admin",
+    "password": "Qk2stpgP4PnH5dVA",
+    "port": "8199",
+    "db": "pandora_na",
+    "host": "pandora-na.cb92yjhtxtye.us-east-1.redshift.amazonaws.com"
+  },
+  "photon_na": {
+    "username": "pandora_admin",
+    "password": "Qk2stpgP4PnH5dVA",
+    "port": "8192",
+    "db": "photon_na",
+    "host": "photon-na.ceta1dcpgcb1.us-east-1.redshift.amazonaws.com"
+  },
+  "photon_eu": {
+    "username": "pandora_eu_admin",
+    "password": "Qk2stpgP4PnH5dVA",
+    "port": "8192",
+    "db": "photon_eu",
+    "host": "photon-eu.c5iri5kmzaxo.eu-west-1.redshift.amazonaws.com"
+  }
+},
+  "qmr": {
+    "qmr_log_path": "src/main/resources/qmr_logs/*",
+    "table_info": "src/main/resources/table_info/*",
+    "query_history_path": "src/main/resources/query_history/*"
+  }
+
+}

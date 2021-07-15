@@ -1,0 +1,167 @@
+<!--
+=========================================================
+* Material Dashboard Dark Edition - v2.1.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/material-dashboard-dark
+* Copyright 2019 Creative Tim (http://www.creative-tim.com)
+
+* Coded by www.creative-tim.com
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en" ng-app>
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Daily Report
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <!-- CSS Files -->
+  <link href="css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <style type="text/css">
+    
+    .card .card-header-primary .card-icon, .card .card-header-primary:not(.card-header-icon):not(.card-header-text), .card .card-header-primary .card-text {
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgb(26, 32, 53);
+}
+
+.dark-edition .card .card-header-primary .card-icon, .dark-edition .card .card-header-primary .card-text, .dark-edition .card .card-header-primary:not(.card-header-icon):not(.card-header-text), .dark-edition .card.bg-primary, .dark-edition .card.card-rotate.bg-primary .front, .dark-edition .card.card-rotate.bg-primary .back {
+    background: linear-gradient(60deg, #c6bdbd94, #bcc1c1)
+}
+
+.dark-edition {
+    background-color: #f1f1f1;
+}
+
+.dark-edition .card {
+    background: #fff;
+}
+
+.card [class*="card-header-"] .card-title a, .card [class*="card-header-"] .card-title, .card [class*="card-header-"] .icon i, .card[class*="bg-"] .card-title a, .card[class*="bg-"] .card-title, .card[class*="bg-"] .icon i {
+    color: #00000096;
+}
+
+.table-fixed tbody {
+    height: 600px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+table {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+}
+
+thead {
+    flex: 0 0 auto;
+}
+
+tbody {
+    flex: 1 1 auto;
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+
+.title {
+    text-align: center;
+    padding: 5px;
+}
+
+.content{
+  margin: 0px;
+}
+
+
+  </style>
+
+</head>
+
+<body ng-controller="controller" class="dark-edition" >
+  <div class="wrapper ">
+ 
+    <div class="main-panel" style="height: 100%;width: 100%;">
+
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-body table-responsive">
+              <textarea ng-model="appContext.table_data" style=" width: 100%;   height: 90px !important;
+    border: hidden;" placeholder="paste your data here!!">
+            
+          </textarea>
+
+          <button class="btn btn-primary" ng-click="setTableData(appContext.table_data)"> Display </button>
+
+            </div>
+          
+          </div>
+          
+        </div>
+
+        <div class="container-fluid">
+            <div ng-show="appContext.loading" style="text-align: center;"> 
+              Please Wait...
+              <span>
+                <img style="height: 31px;" src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/585d0331234507.564a1d239ac5e.gif">
+              </span>
+            </div>
+            <div ng-show="appContext.loading" style="position: absolute;background: #ccc;height: 100%;width: 100%;z-index: 1;opacity: 0.5;"></div>
+
+            <div class="row">
+
+            <div class="col-lg-12 col-md-12">
+              <div class="card">
+                <h4 class="card-title title">Table Data</h4>
+                <div class="card-body table-responsive">
+                  <table class="table table-fixed table-striped table-bordered table-hover ">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th ng-repeat="column in table_columns">{{column}} </th>
+                      </tr>
+                    </thead>
+                    <tr ng-repeat="row in table_data">
+                      <td ng-repeat="column in table_columns">{{row[column]}}</td>
+                    </tr>
+                  </table>
+                  <button class="btn btn-primary" ng-click="exportExcel()"> Download </button>
+
+                </div>
+              </div>
+            </div> 
+          </div> 
+        </div>
+      </div>
+      <footer class="footer">
+
+      </footer>
+
+    </div>
+  </div>
+  <!--   Core JS Files   -->
+</body>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="js/app.js"></script>
+</html>
